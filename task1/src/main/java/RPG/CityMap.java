@@ -10,7 +10,7 @@ public class CityMap extends Map {
 	@Override
 	Tile createTile() {
 
-		Tile t = null; // this is probably stupid
+		Tile t = null; // this is probably stupid but works for now
 		Random r = new Random();
 		
 		int idx = r.nextInt(3);
