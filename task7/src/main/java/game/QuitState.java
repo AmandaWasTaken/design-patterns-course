@@ -8,6 +8,6 @@ public class QuitState extends State {
 
 	public void action(Character c){	
 		c.running = false;
-		stats._print_stats(c);
+		Formatter._print_stats(c);
 	}
 }

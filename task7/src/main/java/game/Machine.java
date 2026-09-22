@@ -14,26 +14,17 @@ public class Machine {
 
 	public void start(Character c){
 		while(c.running){
-			print_character_status(c);
+			Formatter.clear_screen();
+			if(c.xp >= 25){
+				System.out.println("You win!");
+				state = new QuitState(this);
+				return;
+			}
 			state.action(c);
 		}
-	}	
-
-	private void print_character_status(Character c){
-
-		if(c.xp >= 25){
-			System.out.println("You win!");
-			state = new QuitState(this);
-			return;
-		}
-
-		System.out.println("-------- Status --------");
-		Formatter._print_fmt("Total Kills:", c.kill_count);
-		Formatter._print_fmt("XP Points:", c.xp);
-		Formatter._print_fmt("Hitpoints:", c.hp);
-		System.out.println("------------------------");
 	}
 
+	
 	public void set_state(State s) { this.state = s; }
 
 	public int print_actions(List<String> options){

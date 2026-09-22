@@ -25,6 +25,7 @@ public class MeditateState extends State {
 					c.hp, c.max_hp);
 		}
 
+		Formatter.print_character_status(c);
 		System.out.println();
 		List<String> options = new ArrayList<String>();
 

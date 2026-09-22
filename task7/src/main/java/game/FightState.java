@@ -18,9 +18,9 @@ public class FightState extends State {
 		Machine m = this.get_machine();
 		int success = r.nextInt(16);
 		if(success % 2 == 0){
+			c.xp += 7;
 			System.out.printf("%s has succesfully slain the enemy%n", c.name);
 			System.out.println("(Gained 7 XP points)");
-			c.xp += 7;
 			c.kill_count++;
 		} else {
 			System.out.println("But the enemy was too strong");
@@ -31,11 +31,12 @@ public class FightState extends State {
 					m.set_state(new DeadState(m));
 					return;
 			}
-			System.out.printf("(HP left: %d/%d)%n", 
-					c.hp, c.max_hp);
-			}
+		}
+
 
 		System.out.println();
+		Formatter.print_character_status(c);
+
 		List<String> options = new ArrayList<String>();
 
 		options.add("Quit");

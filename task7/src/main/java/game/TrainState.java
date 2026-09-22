@@ -10,9 +10,11 @@ public class TrainState extends State {
 	}
 
 	public void action(Character c){
+
+		c.xp += 3;
 		System.out.printf("%s is training. . .%n", c.name);
 		System.out.println("(Gained 3 XP points)");
-		c.xp += 3;
+		Formatter.print_character_status(c);
 
 		System.out.println();
 		List<String> options = new ArrayList<String>();

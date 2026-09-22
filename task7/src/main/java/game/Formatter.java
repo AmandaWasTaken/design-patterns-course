@@ -8,6 +8,23 @@ public class Formatter {
 		    "", s, "", "", val));
 
 	}
+
+	public static void clear_screen(){
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
+	}
+
+	public static void print_character_status(Character c){
+
+
+
+		System.out.println("-------- Status --------");
+		Formatter._print_fmt("Total Kills:", c.kill_count);
+		Formatter._print_fmt("XP Points:", c.xp);
+		Formatter._print_fmt("Hitpoints:", c.hp);
+		System.out.println("------------------------");
+	}
+
 	
 	public static void _print_stats(Character c){
 
