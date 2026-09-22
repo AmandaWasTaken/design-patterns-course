@@ -16,7 +16,11 @@ public class MeditateState extends State {
 					"at maximum health");
 		} else {
 			System.out.println("They gained 5 health points");
-			c.hp += 5;
+			if(c.hp + 5 > c.max_hp){
+				c.hp += 0;
+			} else {
+				c.hp += 5;
+			}
 			System.out.printf("HP Left: %d/%d%n",
 					c.hp, c.max_hp);
 		}
@@ -26,8 +30,8 @@ public class MeditateState extends State {
 
 		options.add("Quit");
 		options.add("Train");
-		if(c.xp >= 5) options.add("Meditate");
-		if(c.xp >= 10) options.add("Fight");
+		options.add("Meditate");
+		if(c.xp >= 15) options.add("Fight");
 
 		Machine m = this.get_machine();
 

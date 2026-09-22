@@ -7,7 +7,6 @@ public class DeadState extends State {
 	}
 
 	public void action(Character c){
-		System.out.println("Character died");
 		stats._print_stats(c);
 		c.running = false;
 	}

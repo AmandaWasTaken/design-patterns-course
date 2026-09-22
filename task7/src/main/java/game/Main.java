@@ -3,6 +3,7 @@ package game;
 public class Main {
 
 	public static void main (String[] args) {
-		new Machine().start();
+		Character c = new Character("Amanda");
+		new Machine().start(c);
 	}
 }

@@ -3,23 +3,20 @@ package game;
 import java.util.List;
 import java.util.ArrayList;
 
-public class TrainState extends State {
+public class InitialState extends State {
 
-	public TrainState(Machine machine){
+	public InitialState(Machine machine){
 		super(machine);
 	}
 
 	public void action(Character c){
-		System.out.printf("%s is training. . .%n", c.name);
-		System.out.println("(Gained 3 XP points)");
-		c.xp += 3;
 
-		System.out.println();
+		System.out.printf("%s has begun a new adventure!%n", c.name);
+
 		List<String> options = new ArrayList<String>();
 		options.add("Quit");
 		options.add("Train");
-		if(c.xp>= 12) options.add("Meditate");
-		if(c.xp >= 15) options.add("Fight");
+
 		Machine m = this.get_machine();
 
 		switch(m.print_actions(options)){
@@ -29,12 +26,9 @@ public class TrainState extends State {
 			case 1:
 				m.set_state(new TrainState(m));
 				break;
-			case 2:
-				m.set_state(new MeditateState(m));
-				break;
-			case 3:
-				m.set_state(new FightState(m));
+			default:
+				System.out.println("Invalid option!");
 				break;
 		}
 	}
-} 
+}

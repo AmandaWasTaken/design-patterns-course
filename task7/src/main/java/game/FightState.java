@@ -17,19 +17,20 @@ public class FightState extends State {
 
 		Machine m = this.get_machine();
 		int success = r.nextInt(16);
-		if(success % 2 != 0 && success % 2 != 1){
+		if(success % 2 == 0){
 			System.out.printf("%s has succesfully slain the enemy%n", c.name);
-			c.xp += 5;
+			System.out.println("(Gained 7 XP points)");
+			c.xp += 7;
 			c.kill_count++;
 		} else {
 			System.out.println("But the enemy was too strong");
 			System.out.printf("%s has lost 5 hitpoints ", c.name);
 			c.hp -= 5;
-			if(c.hp == 0){
-					stats._print_stats(c);
+			if(c.hp <= 0){
 					c.is_alive = false;
-					c.running = false;
-				}
+					m.set_state(new DeadState(m));
+					return;
+			}
 			System.out.printf("(HP left: %d/%d)%n", 
 					c.hp, c.max_hp);
 			}
@@ -39,8 +40,8 @@ public class FightState extends State {
 
 		options.add("Quit");
 		options.add("Train");
-		if(c.xp >= 5) options.add("Meditate");
-		if(c.xp >= 10) options.add("Fight");
+		options.add("Meditate");
+		options.add("Fight");
 
 		switch(m.print_actions(options)){
 
@@ -61,4 +62,3 @@ public class FightState extends State {
 		}
 	}
 }
-

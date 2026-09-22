@@ -9,18 +9,30 @@ public class Machine {
 	private State state;
 
 	public Machine(){
-		state = new TrainState(this);
+		state = new InitialState(this);
 	}
 
-	Character c = new Character("Amanda");
-
-	public void start(){
+	public void start(Character c){
 		while(c.running){
+			print_character_status(c);
 			state.action(c);
 		}
-		//stats._print_stats(c);
+	}	
+
+	private void print_character_status(Character c){
+
+		if(c.xp >= 25){
+			System.out.println("You win!");
+			state = new QuitState(this);
+			return;
+		}
+
+		System.out.println("-------- Status --------");
+		Formatter._print_fmt("Total Kills:", c.kill_count);
+		Formatter._print_fmt("XP Points:", c.xp);
+		Formatter._print_fmt("Hitpoints:", c.hp);
+		System.out.println("------------------------");
 	}
-	
 
 	public void set_state(State s) { this.state = s; }
 
@@ -33,4 +45,21 @@ public class Machine {
 		}
 		return sc.nextInt();
 	}
+
+	private void print_level(Character c){
+
+		String level;
+		if(c.xp >= 25){
+			System.out.println("You win!");
+			state = new QuitState(this);
+			return;
+		} else if(c.xp >= 15){
+			level = "Expert";
+		} else if(c.xp >= 12){
+			level = "Intermediate";
+		} else {
+			level = "Novice";
+		}
+		System.out.printf("Current level: %s (%d XP)%n", level, c.xp);
+	} 
 }
